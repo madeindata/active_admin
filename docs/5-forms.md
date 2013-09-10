@@ -6,6 +6,7 @@ the fabulous DSL created by [Formtastic](http://github.com/justinfrench/formtast
     ActiveAdmin.register Post do
 
       form do |f|
+        f.semantic_errors *f.object.errors.keys
         f.inputs "Details" do
           f.input :title
           f.input :published_at, :label => "Publish Post At"
@@ -69,4 +70,14 @@ on the association to use this option.
 The `:heading` option will add a custom heading to has_many form. You can hide a heading by setting `:heading => false`.
 
 The `:new_record` option will show or hide new record link at the bottom of has_many form. It is set as true by default.
+
+## Displaying Errors
+
+To display a list of all errors, include `semantic_errors` at top of form. Particularly useful to display errors on the base or virtual attributes.
+
+    form do |f|
+      f.semantic_errors *f.object.errors.keys
+      f.inputs
+      f.buttons
+    end
 
